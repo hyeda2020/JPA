@@ -1,5 +1,6 @@
 package hellojpa;
 
+import hellojpa.domain.Member;
 import jakarta.persistence.*;
 
 import java.util.List;
