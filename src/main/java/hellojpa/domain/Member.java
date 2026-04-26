@@ -20,6 +20,10 @@ public class Member {
     @Column(name = "name") // 컬럼 매핑
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id") // Team 클래스의 team_id 컬럼과 조인
+    private Team team;
+
     private String city;
 
     private String street;
@@ -42,4 +46,11 @@ public class Member {
 
 //    @Transient // 특정 필드를 컬럼에 매핑하지 않음(매핑 무시)
 //    private String temp;
+
+    // 연관관계 편의 메서드 선언하여 활용
+    // (단, 이러한 편의 메서드는 주인/비주인 중 하나에만 선언하기를 권장)
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }
